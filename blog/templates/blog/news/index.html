@@ -1,0 +1,125 @@
+{% extends 'fontend/main.html' %} {% block content %}
+<div class="p-3">
+  <div class="card">
+    <div class="card-header">
+      <h2>Create Blog</h2>
+    </div>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-horizontal">
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Tiêu đề :</label>
+            <div class="col-md-12">
+              <input type="text" name="title" class="form-control" required />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Mô tả ngắn :</label>
+            <div class="col-md-12">
+              <input type="text" name="detail" class="form-control" required />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Chi tiết :</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                name="description"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Hình ảnh :</label>
+            <div class="col-md-10">
+              <input
+                class="form-control w-50 border-0"
+                name="ImageUrl"
+                id="inputEditFile"
+                type="file"
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Vị trí :</label>
+            <div class="col-md-12 row mx-2">
+              <div class="form-check col-md-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Việt Nam
+                </label>
+              </div>
+              <div class="form-check col-md-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Châu Á
+                </label>
+              </div>
+              <div class="form-check col-md-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Châu Âu
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Public</label>
+            <div class="col-md-12 row mx-2">
+              <div class="form-check col-md-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="True"
+                />
+                <label class="form-check-label" for="status"> Yes </label>
+              </div>
+              <div class="form-check col-md-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="False"
+                  checked
+                />
+                <label class="form-check-label" for="status"> No </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group py-2 row">
+            <div class="col-md-6">
+              <label class="control-label col-md-2 m-1">Loại</label>
+              <div class="col-md-12">
+                <select class="form-control" id="category" name="category">
+                  {% for category in listCategory %}
+                  <option value="{{category.id}}">{{category.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label col-md-2 m-1">Date public :</label>
+              <div class="col-md-12">
+                <input
+                  class="form-control"
+                  name="publicDate"
+                  id="publicDate"
+                  type="date"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center p-3">
+        <button class="btn btn-success" type="submit">Submit</button>
+        <button class="btn btn-primary" type="button">Clear</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

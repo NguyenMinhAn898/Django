@@ -1,0 +1,151 @@
+{% extends 'fontend/main.html' %} {% block content %}
+<div class="p-3">
+  <div class="card">
+    <div class="card-header">
+      <h2>Details Blog</h2>
+    </div>
+    <div class="card-body">
+      <form action="/update" method="POST">
+        {% csrf_token %}
+        <div class="form-horizontal">
+          <input type="hidden" name="id" value="{{blog.id}}" />
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Tiêu đề :</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                value="{{blog.title}}"
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Mô tả ngắn :</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="detail"
+                value="{{blog.detail}}"
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Chi tiết :</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="description"
+                value="{{blog.description}}"
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Hình ảnh :</label>
+            <div class="col-md-10">
+              <input
+                class="form-control w-50 border-0"
+                name="ImageUrl"
+                value="{{blog.imgUrl}}"
+                type="file"
+              />
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Vị trí :</label>
+            <div class="col-md-12 row mx-2">
+              {% for place in listPlace %}
+              <div class="form-check col-md-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{place.name}}
+                </label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group py-2">
+            <label class="control-label col-md-2 m-1">Public</label>
+            <div class="col-md-12 row mx-2">
+              <div class="form-check col-md-1">
+                {% if blog.status %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  id="status"
+                  value="True"
+                  checked
+                />
+                {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  id="status"
+                  value="True"
+                />
+                {% endif %}
+
+                <label class="form-check-label" for="status"> Yes </label>
+              </div>
+              <div class="form-check col-md-1">
+                {% if not blog.status %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  id="status"
+                  value="False"
+                  checked
+                />
+                {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="False"
+                  id="status"
+                />
+                {% endif %}
+
+                <label class="form-check-label" for="status"> No </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group py-2 row">
+            <div class="col-md-6">
+              <label class="control-label col-md-2 m-1">Loại :</label>
+              <div class="col-md-12">
+                <select class="form-control" id="category" name="category">
+                  {% for category in listCategory %}
+                  <option value="{{category.id}}">{{category.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label col-md-2 m-1">Date public :</label>
+              <div class="col-md-12">
+                <input
+                  class="form-control"
+                  name="publicDate"
+                  id="publicDate"
+                  value="{{blog.get_PublicDate_Str}}"
+                  type="date"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center p-3">
+          <button class="btn btn-success mx-3" type="submit">Update</button>
+          <button class="btn btn-primary mx-3" type="button">Clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

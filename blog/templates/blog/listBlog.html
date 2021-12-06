@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+    <h2>List Blogs</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr class="text-center">
+          <th class="" scope="col">Id</th>
+          <th class="col-md-4" scope="col">Title</th>
+          <th class="col-md-1" scope="col">Category</th>
+          <th class="col-md-1" scope="col">Status</th>
+          <th class="col-md-2" scope="col">Place</th>
+          <th class="col-md-2" scope="col">Public_Date</th>
+          <th class="col-md-1" scope="col">Edit</th>
+          <th class="col-md-1" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for blog in listBlog %}
+        <tr>
+          <th scope="row">{{blog.id}}</th>
+          <td>{{blog.title}}</td>
+          <td class="text-center">{{blog.category.name}}</td>
+          <td class="text-center">
+            {% if blog.status%} Yes {% else %} No {% endif %}
+          </td>
+          <td>{{blog.get_Place}}</td>
+          <td class="text-center">{{blog.get_PublicDate_Str}}</td>
+          <td class="text-center">
+            <a
+              href="{% url 'detail-blog' blog.id %}"
+              class="btn btn-outline-primary"
+            >
+              Edit
+            </a>
+          </td>
+          <td class="text-center">
+            <!-- <button class="btn btn-outline-danger" type="button">Delete</button> -->
+            <a
+              href="{% url 'delete-blog' blog.id %}"
+              class="btn btn-outline-danger"
+            >
+              Delete
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

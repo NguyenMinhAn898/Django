@@ -1,0 +1,25 @@
+header {
+  height: 100px;
+  background-color: #201e1e;
+}
+
+.logo-header {
+  height: 100px;
+  width: auto;
+}
+.menu-content {
+  min-height: 72vh;
+  min-height: calc(100vh - 200px);
+}
+
+.menu-content span {
+  font-size: 25px;
+}
+
+.menu-content .list-group-item {
+  border: 0;
+}
+
+.footer {
+  height: 100px;
+}

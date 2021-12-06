@@ -38,7 +38,10 @@ def newsBlog(request):
 
 
 def searchBlog(request):
-    context = {'listBlog': None, 'searchStr': 'Search'}
+    title = request.GET.get('title') if request.GET.get(
+        'title') != None else ''
+    blogs = Blog.objects.filter(title__contains=title)
+    context = {'listBlog': blogs, 'searchStr': title}
     return render(request, 'blog/search/index.html', context)
 
 
